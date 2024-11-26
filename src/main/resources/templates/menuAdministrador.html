@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <!-- Enlace a CSS de Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Fondo de página */
+        body {
+            background-image: url('../imagenes/Fond.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 0; /* Espacio superior e inferior para el contenedor */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Contenedor principal */
+        .admin-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            text-align: center;
+        }
+
+        /* Título */
+        .admin-title {
+            color: #4a90e2;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mensaje de bienvenida */
+        .welcome-message {
+            color: #6fcf97;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Menú de opciones */
+        .admin-menu .menu-item {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: #333;
+            background-color: #f8f9fa;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: #4a90e2;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Botón cerrar sesión */
+        .logout-btn {
+            background-color: transparent;
+            color: #4a90e2;
+            border: 2px solid #4a90e2;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            margin-top: 2.5rem; /* Más espacio respecto a las opciones del menú */
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #4a90e2;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h2 class="admin-title">Panel del Administrador</h2>
+
+        <!-- Mensaje de bienvenida -->
+        <p th:text="${mensaje}" class="welcome-message">Bienvenido(a), Administrador(a)</p>
+
+        <div class="admin-menu">
+            <a href="/admin/verPsicologos" class="menu-item">Ver Lista de Psicólogos</a>
+            <a href="/admin/verClientes" class="menu-item">Ver Lista de Clientes</a>
+            <a href="/admin/crearPsicologo" class="menu-item">Crear Nuevo Psicólogo</a>
+            <a href="/admin/agregarPago" class="menu-item">Agregar Pago a Cliente</a>
+            <a href="/admin/agregarHorario" class="menu-item">Agregar Horario</a>
+            <a href="/admin/verHorarios" class="menu-item">Ver Lista de Horarios</a>
+            <a href="/admin/asignarPsicologoHorario" class="menu-item">Asignar Psicólogo a Horario</a>
+        </div>
+<pv>
+	<p></p>
+</pv>
+        <!-- Botón para cerrar sesión -->
+        <a href="/login/" class="logout-btn">Cerrar Sesión</a>
+    </div>
+</body>
+</html>
