@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Horarios</title>
+    <!-- Enlace a CSS de Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Fondo de página */
+        body {
+            background-image: url('../imagenes/Fond.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Título principal */
+        .page-title {
+            color: #4a90e2;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        /* Tabla */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .schedule-table th {
+            background-color: #e9f7fc;
+            color: #333;
+            text-align: center;
+            padding: 1rem;
+            font-weight: bold;
+            border-bottom: 2px solid #4a90e2;
+        }
+
+        .schedule-table td {
+            text-align: center;
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .schedule-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            text-align: left;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Botones */
+        .btn-warning {
+            background-color: #ffc107;
+            border: none;
+            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #333;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 25px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d6d6d6;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-title">Lista de Horarios de Apertura y Cierre</h2>
+
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th>Día</th>
+                    <th>Hora de Apertura</th>
+                    <th>Hora de Cierre</th>
+                    <th>Psicólogos Asignados</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="horario : ${horarios}">
+                    <td th:text="${horario.dia}">[Día]</td>
+                    <td th:text="${horario.horaApertura}">[Hora de Apertura]</td>
+                    <td th:text="${horario.horaCierre}">[Hora de Cierre]</td>
+                    <td>
+                        <ul>
+                            <!-- Mostrar los psicólogos asignados a este horario -->
+                            <li th:each="psicologo : ${psicologosPorHorario[horario.id]}">
+                                <span th:text="${psicologo.nombres} + ' ' + ${psicologo.apellidos}">[Psicólogo]</span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <a th:href="@{/admin/editarHorario/{id}(id=${horario.id})}" class="btn btn-warning">Editar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center mt-4">
+            <a href="/admin/menu" class="btn btn-secondary">Volver al Menú</a>
+        </div>
+    </div>
+</body>
+</html>
